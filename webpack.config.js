@@ -12,6 +12,14 @@ module.exports = {
         clean: true
 
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
+        ]
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Restaurant Roulette',
@@ -20,4 +28,4 @@ module.exports = {
         })
     ]
 
-}
+} 
