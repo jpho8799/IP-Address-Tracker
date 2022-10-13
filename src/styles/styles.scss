@@ -20,11 +20,11 @@ body {
     width: 100%;
 }
 
-@mixin flex--display($direction) {
+@mixin flex--display($direction, $gap---spacing) {
     display: flex;
     align-items: center;
     flex-direction: $direction;
-    gap: 2rem;
+    gap: $gap---spacing;
 }
 
 #banner {
@@ -34,30 +34,30 @@ body {
 }
 
 #interactive---component{
-    @include flex--display(column);
+    @include flex--display(column, 2rem);
     color: black;
-
     
     #searchbar{
         width: 25%;
         height: 1rem;
         display: flex;
         flex-direction: row;
-        border: 1px solid lightgrey;
-        border-radius: .75rem;
-        padding: 1rem;
-
 
         input {
+            height: 100%;
             flex-grow: 2;
             border: none;
+            padding: 0.5rem;
+            border: 1px solid lightgrey;
+            border-radius: .75rem 0 0 .75rem;
 
         }
         button {
            display: inline-block;
            border: none;
-           width: 5%;
+           width: 2rem;
            height: 100%;
+
 
             i {
                 width: 100%;
@@ -86,9 +86,18 @@ body {
 
 section {
     width: 25%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    @include flex--display(column, 1rem);
+
+    p{
+        color: black;
+    }
+}
+
+.vertical---seperation {
+    border-left: 1px solid lightgrey;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 60%;
 }
 
 #map {
