@@ -6,41 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Roulette</title>
     <script src="https://kit.fontawesome.com/82c4d17290.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 </head>
 <body>
-   <div id ="hero---section">
+   <div id ="banner">
+        
+    </div>
+
+    <div id="interactive---component">
         <h1>IP Address Tracker</h1>
-        <div class = "searchbar">
-            <input type="text" placeholder="Search for any IP address or domain">
+        <form id = "searchbar">
+            <input type="text" placeholder=" Search for any IP address or domain">
             <button>
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
+        </form>
+
+        <div id ="info---display">
+            <section class="addresss">
+                <h3>IP Address</h3>
+                <p></p>
+            </section>
+            <section id = "location">
+                <h3>Location</h3>
+                <p></p>
+            </section>
+            <section id = "time-zone">
+                <h3>Time Zone</h3>
+                <p></p>
+            </section>
+            <section id = "isp">
+                <h3>ISP</h3>
+                <p></p>
+            </section>
         </div>
     </div>
 
-    <div id ="info---display">
-        <section class="addresss">
-            <h3>IP Address</h3>
-            <p></p>
-        </section>
-        <section id = "location">
-            <h3>Location</h3>
-            <p></p>
-        </section>
-        <section id = "time-zone">
-            <h3>Time Zone</h3>
-            <p></p>
-        </section>
-        <section id = "isp">
-            <h3>ISP</h3>
-            <p></p>
-        </section>
-    </div>
-
     <div id = "map">
-        <map name="isp-map">
-
-        </map>
+        
 
     </div>
 
