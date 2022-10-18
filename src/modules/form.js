@@ -1,3 +1,5 @@
+import { displayInfoSection } from "./display.js";
+import {apiCall} from "./request/api.js";
 
 function validateForm(form){
     let formComplete = true;
@@ -28,3 +30,17 @@ function invalidInput(element){
 function validInput(element){
     element.classList.remove('invalid');
 }
+
+function initButton(){
+    const submitBtn = document.getElementById('submitBtn');
+
+    submitBtn.addEventListener('click', ()=>{
+        const searchForm = document.getElementById('searchbar');
+        if(validateForm(searchForm)){
+            const input = document.getElementById('inputValue');
+            displayInfoSection(input.textContent);
+        }
+    })
+}
+
+export {initButton};
