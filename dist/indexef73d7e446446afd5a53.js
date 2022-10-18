@@ -126,17 +126,37 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.scss */ \"./src/styles/styles.scss\");\n/* harmony import */ var _modules_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/api */ \"./src/modules/api.js\");\n\n\nvar map = L.map('map').setView([2, 2], 5);\n\nL.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n}).addTo(map);\n\n\n\nL.marker([2, 2]).addTo(map)\n    .openPopup()\n\n\n;(0,_modules_api__WEBPACK_IMPORTED_MODULE_1__.apiCall)('192.212.174.101');\n\n//# sourceURL=webpack://restaurant-roulette-/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.scss */ \"./src/styles/styles.scss\");\n/* harmony import */ var _modules_display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/display */ \"./src/modules/display.js\");\n/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/form */ \"./src/modules/form.js\");\n\n\n\n\n\nwindow.onload = (event)=>{\n    (0,_modules_form__WEBPACK_IMPORTED_MODULE_2__.initButton)();\n    (0,_modules_display__WEBPACK_IMPORTED_MODULE_1__.initDisplay)();\n    //displayInfoSection();\n}\n\n\n\n\n//# sourceURL=webpack://restaurant-roulette-/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/modules/api.js":
-/*!****************************!*\
-  !*** ./src/modules/api.js ***!
-  \****************************/
+/***/ "./src/modules/display.js":
+/*!********************************!*\
+  !*** ./src/modules/display.js ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"apiCall\": () => (/* binding */ apiCall)\n/* harmony export */ });\n\n\nfunction getAddress(){\n\n}\n\nfunction apiCall(ipAddress){\n    const API_KEY = \"MISSING_ENV_VAR\".API_KEY;\n    let URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&ipAddress=${ipAddress}`;\n\n    fetch(URL, {\n        mode: 'cors'\n    })\n    .then(function(response) {\n            console.log(response);\n    })\n    .catch(function(err) {\n    // Error :(\n    });\n\n}\n\n\n\n//# sourceURL=webpack://restaurant-roulette-/./src/modules/api.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"displayInfoSection\": () => (/* binding */ displayInfoSection),\n/* harmony export */   \"initDisplay\": () => (/* binding */ initDisplay)\n/* harmony export */ });\n/* harmony import */ var _request_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./request/api */ \"./src/modules/request/api.js\");\n\n\nfunction initDisplay(){\n    var map = L.map('map').setView([2, 2], 5);\n\n    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n    }).addTo(map);\n\n\n\n    L.marker([2, 2]).addTo(map)\n    .openPopup()\n}\n\nfunction displayInfoSection(input){\n    console.log(input);\n    const ipData = (0,_request_api__WEBPACK_IMPORTED_MODULE_0__.apiCall)(input);\n\n    const ipAddress = document.getElementById('address');\n    const location = document.getElementById('location');\n    const timeZone = document.getElementById('time-zone');\n    const isp = document.getElementById('isp');\n\n\n    ipAddress.lastElementChild.textContent = ipData.ip;\n    location.lastElementChild.textContent = ipData.location.city + \", \" + ipData.location.region;\n    timeZone.lastElementChild = ipData.location.timezone;\n    isp.lastElementChild = ipData.isp;\n\n}\n\n\n\n//# sourceURL=webpack://restaurant-roulette-/./src/modules/display.js?");
+
+/***/ }),
+
+/***/ "./src/modules/form.js":
+/*!*****************************!*\
+  !*** ./src/modules/form.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initButton\": () => (/* binding */ initButton)\n/* harmony export */ });\n/* harmony import */ var _display_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./display.js */ \"./src/modules/display.js\");\n/* harmony import */ var _request_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request/api.js */ \"./src/modules/request/api.js\");\n\n\n\nfunction validateForm(form){\n    let formComplete = true;\n    Array.from(form.elements).forEach(element=>{\n        if(element.tagName == 'INPUT' || element.tagName == 'SELECT'){\n            if(element.value <= 0){\n                formComplete = false;\n                invalidInput(element);\n                \n            }else{\n                validInput(element);\n               \n            }\n         }\n        \n    })\n\n    return formComplete;\n\n}\n\n\n\nfunction invalidInput(element){\n    element.classList.add('invalid');\n}\n\nfunction validInput(element){\n    element.classList.remove('invalid');\n}\n\nfunction initButton(){\n    const submitBtn = document.getElementById('submitBtn');\n\n    submitBtn.addEventListener('click', ()=>{\n        const searchForm = document.getElementById('searchbar');\n        if(validateForm(searchForm)){\n            const input = document.getElementById('inputValue');\n            (0,_display_js__WEBPACK_IMPORTED_MODULE_0__.displayInfoSection)(input.textContent);\n        }\n    })\n}\n\n\n\n//# sourceURL=webpack://restaurant-roulette-/./src/modules/form.js?");
+
+/***/ }),
+
+/***/ "./src/modules/request/api.js":
+/*!************************************!*\
+  !*** ./src/modules/request/api.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"apiCall\": () => (/* binding */ apiCall)\n/* harmony export */ });\n\n\nasync function apiCall(ipAddress){\n    try{\n        console.log(ipAddress);\n        const API_KEY = \"at_hk3hHm5NSAn3YIexs8lg8DMq5UEYT\";\n        console.log(API_KEY);\n        let URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&ipAddress=${ipAddress}`;\n\n        let response = await fetch(URL, {\n         mode: 'cors'\n        })\n        return response.json();\n\n    }catch(error){\n        console.log('GEOIP💀',error)\n    };\n    \n}\n\n\n\n\n//# sourceURL=webpack://restaurant-roulette-/./src/modules/request/api.js?");
 
 /***/ }),
 
