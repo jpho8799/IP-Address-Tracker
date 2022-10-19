@@ -13,20 +13,28 @@ function initDisplay(){
     .openPopup()
 }
 
-function displayInfoSection(input){
-    console.log(input);
-    const ipData = apiCall(input);
+async function displayInfoSection(input){
 
+    const ipData = await apiCall(input);
     const ipAddress = document.getElementById('address');
     const location = document.getElementById('location');
     const timeZone = document.getElementById('time-zone');
     const isp = document.getElementById('isp');
 
-
+    
+    console.log('displayInfo' + ipData);
+    
+    
     ipAddress.lastElementChild.textContent = ipData.ip;
     location.lastElementChild.textContent = ipData.location.city + ", " + ipData.location.region;
-    timeZone.lastElementChild = ipData.location.timezone;
-    isp.lastElementChild = ipData.isp;
+    timeZone.lastElementChild.textContent = "UTC " + ipData.location.timezone;
+    isp.lastElementChild.textContent = ipData.isp;
+    
+    
+
+}
+
+function displayMap(lat, lon){
 
 }
 
