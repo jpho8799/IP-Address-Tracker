@@ -1,5 +1,4 @@
-import { displayInfoSection } from "./display.js";
-import {apiCall} from "./request/api.js";
+import { display } from "./display.js";
 
 function validateForm(form){
     let formComplete = true;
@@ -38,7 +37,7 @@ function initButton(){
         const searchForm = document.getElementById('searchbar');
         if(validateForm(searchForm)){
             const input = document.getElementById('inputValue');
-            displayInfoSection(input.textContent);
+            display(input.textContent);
         }
     })
 }
