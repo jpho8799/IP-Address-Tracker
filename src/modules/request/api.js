@@ -10,7 +10,17 @@ async function apiCall(ipAddress){
          mode: 'cors',
         })
 
-        return await response.json();
+        const ipData =  await response.json();
+
+        return {
+            "ipAddress": ipData.ip,
+            "city": ipData.location.city,
+            "region": ipData.location.region,
+            "timezone": ipData.location.timezone,
+            "isp": ipData.isp,
+            "lat": ipData.location.lat,
+            "lng": ipData.location.lng,
+        }
         
 
     }catch(error){
