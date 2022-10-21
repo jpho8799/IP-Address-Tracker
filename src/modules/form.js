@@ -37,7 +37,7 @@ function initButton(){
         const searchForm = document.getElementById('searchbar');
         if(validateForm(searchForm)){
             const input = document.getElementById('inputValue');
-            display(input.textContent);
+            display(input.value);
         }
     })
 }
