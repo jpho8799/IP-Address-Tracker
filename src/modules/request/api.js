@@ -1,8 +1,8 @@
 
 
 async function apiCall(ipAddress){
+    console.log(ipAddress);
     try{
-        console.log('reached');
         const API_KEY = process.env.IP_API;
         let URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&ipAddress=${ipAddress}`;
 
