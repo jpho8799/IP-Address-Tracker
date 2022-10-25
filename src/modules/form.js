@@ -1,9 +1,10 @@
 import { display } from "./display.js";
+import '../styles/styles.scss';
 
 function validateForm(form){
     let formComplete = true;
     Array.from(form.elements).forEach(element=>{
-        if(element.tagName == 'INPUT' || element.tagName == 'SELECT'){
+        if(element.tagName == 'INPUT'){
             if(element.value <= 0){
                 formComplete = false;
                 invalidInput(element);
@@ -23,6 +24,7 @@ function validateForm(form){
 
 
 function invalidInput(element){
+    console.log(element);
     element.classList.add('invalid');
 }
 

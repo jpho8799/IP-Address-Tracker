@@ -2,9 +2,9 @@
 import { apiCall } from "./request/api";
 
 var map = L.map('map');
-function initMap(lat = 2, lng = 2){
+function initMap(lat = 20.3, lng = 20.3){
     
-    map.setView([lat, lng], 5);
+    map.setView([lat, lng], 6);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
@@ -37,7 +37,7 @@ function displayInfoSection(ipData){
 
 
 function displayMap(lat, lng){
-    map.flyTo([lat, lng], 5,{
+    map.flyTo([lat, lng], 6,{
         animate: true,
         duration: 1
     });

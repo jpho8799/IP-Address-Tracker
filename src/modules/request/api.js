@@ -1,10 +1,10 @@
+import '../../styles/styles.scss';
 
+async function apiCall(input){
 
-async function apiCall(ipAddress){
-    console.log(ipAddress);
     try{
         const API_KEY = process.env.IP_API;
-        let URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&ipAddress=${ipAddress}`;
+        let URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&domain=${input}`;
 
         let response = await fetch(URL, {
          mode: 'cors',
@@ -24,9 +24,14 @@ async function apiCall(ipAddress){
         
 
     }catch(error){
-        console.log('GEOIP💀',error)
+       console.log('bad request');
     };
     
+}
+
+function badRequest(){
+    const inputBar = document.getElementById('inputValue');
+    inputBar.classList.add('invalid'); 
 }
 
 
