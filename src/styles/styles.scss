@@ -45,7 +45,7 @@ body {
 
     
     #searchbar{
-        width: 25%;
+        width: 45%;
         height: 1rem;
         display: flex;
         flex-direction: row;
@@ -54,7 +54,6 @@ body {
         input {
             height: 100%;
             flex-grow: 2;
-            border: none;
             padding: 0.5rem;
             border: 1px solid lightgrey;
             border-radius: .75rem 0 0 .75rem;
@@ -99,6 +98,10 @@ section {
     width: 25%;
     @include flex--display(column, 1rem);
 
+    .sectionTitle{
+        text-align: center;
+        font-size: 0.8rem;
+    }
     p{
         color: black;
     }
@@ -117,5 +120,26 @@ section {
 }
 
 .invalid {
-    border-color: red;
+    border: 1px solid red;
+    background-color: red;
 }
+
+
+@media(max-width: 479px){
+    section {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    #searchbar{
+        width: 20rem;
+    }
+
+    #info---display{
+        @include flex--display(column, 0.25rem);
+        width: 20rem;
+        height: 20rem;
+
+    }
+
+}
+
